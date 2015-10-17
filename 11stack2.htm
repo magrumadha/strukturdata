@@ -1,0 +1,43 @@
+<html>
+	<head>
+	<title>Struktur Data stack</title>
+	<script language = "JavaScript">
+		var stack = new Array();
+		
+		function Input_ke_Stack(data) 
+		{
+			stack.push(data);
+		}
+		
+		function Ambil_dari_Stack() 
+		{
+			var data_dari_stack = stack.pop();
+			if (data_dari_stack == undefined)
+				return "Stack Sudah Kosong";
+			else
+				return data_dari_stack;
+		}
+		
+		function TampilkanStack(list)
+		{
+			list.options.length = 0;
+			for (var i = 0; i < stack.length; i++)
+			{
+				var data = new Option(stack[i]);
+				list.options[list.options.length] = data;
+			}
+		}
+	</script>
+	</head>
+	<body>
+		<form>
+			<input type=text name=textSimpan>
+			<input type=button value="Masukan ke Stack"	onClick='Input_ke_Stack(textSimpan.value);textSimpan.value="";TampilkanStack(mediaList);'>
+			<select name="mediaList" size=12>
+				<option>Tampilan data....
+			</select>
+			<input type=text name=textAmbil size=20>
+			<input type=button value="Ambil dari Stack"	onClick="textAmbil.value = Ambil_dari_Stack();TampilkanStack(mediaList);">
+		</form>
+	</body>	
+</html>

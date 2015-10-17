@@ -1,0 +1,71 @@
+<html>
+	<head>
+	<script LANGUAGE="JavaScript">
+		function Urutkan(form)
+		{
+			DataKosong = false;
+			DataInputan = form.Data.value;
+			inputData = DataInputan.split(",");
+			for (var i = 0; i < inputData.length; i++)
+			{
+				inputData[i] = parseInt(inputData[i], 10);
+				if (isNaN(inputData[i]))
+				{
+					DataKosong = true;
+					break;
+				}
+			}
+			inputData = bubbleSort(inputData, 0, inputData.length - 1);
+			if (DataKosong)
+			{
+				alert("Silakan Entri Dulu Data, Pisahkan dengan tanda Koma");
+				form.Data.focus();
+			} else
+				form.Hasil.value = DataString(inputData, 0);
+		}
+		
+		function DataString(ArrayData, Angka)
+		{
+			if ((ArrayData.length - 1) >= Angka)
+				return (ArrayData[Angka] + "," + DataString(ArrayData,(Angka + 1)));
+			else
+				return "";
+		}
+		
+		function bubbleSort(ArrayData, Mulai, MulaiBaru)
+		{
+			for (var i = MulaiBaru - 1; i >= Mulai; i--)
+			{
+				for (var j = Mulai; j <= i; j++)
+				{
+					if (ArrayData[j+1] < ArrayData[j])
+					{
+						var DataTemporer = ArrayData[j];
+						ArrayData[j] = ArrayData[j+1];
+						ArrayData[j+1] = DataTemporer;
+					}
+				}
+			}
+			return ArrayData;
+		}
+	</script>
+	</head>
+	<body>
+	<center>
+		<form>
+			Masukan Deretan Angka, Pisahkan dengan Koma :
+			<hr>
+			<input type=text name=Data size=30 value="5,6,8,5,12,4,8,4,20">
+			<br>
+			<br>
+			<input type=button value="urutkan" onClick="Urutkan(this.form)">
+			<br>
+			<br>
+			<br>
+			Hasil Pengurutan :
+			<hr>
+			<input type=text name=Hasil size=30>
+		</form>
+	</center>
+	</body>
+</html>

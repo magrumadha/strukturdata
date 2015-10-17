@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<title>Struktur Data Linked List</title> 
+	</head>
+	<body>
+	<script language = "JavaScript">
+	<!--
+		function DoublyLinkedList()
+		{
+			this._Kepala = null;
+			this._Ekor = null;
+			this._Panjang = 0;
+		}
+		
+		DoublyLinkedList.prototype =
+		{
+			constructor: DoublyLinkedList,
+			Tambah: function (data)
+			{
+				var node = {data: data,	next: null,	prev: null};
+				if (this._Panjang == 0)
+				{
+					this._Kepala = node;
+					this._Ekor = node;
+				} else 
+				{
+					this._Ekor.next = node;
+					node.prev = this._Ekor;
+					this._Ekor = node;
+				}
+				this._Panjang++;
+			},
+
+			ItemList: function(index)
+			{
+				if (index > -1 && index < this._Panjang)
+				{
+					var NodeTanda = this._Kepala,
+					i = 0;
+					while(i++ < index)
+					{
+						NodeTanda = NodeTanda.next;
+					}
+					return NodeTanda.data;
+				} else 
+				{
+					return null;
+				}
+			},
+			
+			Buang: function(index)
+			{
+				if (index > -1 && index < this._Panjang)
+				{
+					var NodeTanda = this._Kepala,
+					i = 0;
+					if (index === 0)
+					{
+						this._Kepala = NodeTanda.next;
+						if (!this._Kepala)
+						{
+							this._Ekor = null;
+						} else 
+						{
+							this._Kepala.prev = null;
+						}
+					} else if (index === this._Panjang -1)
+					{
+						NodeTanda = this._Ekor;
+						this._Ekor = NodeTanda.prev;
+						this._Ekor.next = null;
+					} else
+					{
+						while(i++ < index)
+						{
+							NodeTanda = NodeTanda.next;
+						}
+						NodeTanda.prev.next = NodeTanda.next;
+					}
+					this._Panjang--;
+					return NodeTanda.data;
+				} else 
+				{
+					return null;
+				}
+			}
+		}
+
+		var List = new DoublyLinkedList();
+		List.Tambah("Teknik Informatika");
+		List.Tambah("Teknik Komputer");
+		List.Tambah("Komputerisasi Akuntansi");
+		List.Tambah("Computer Networking");
+		document.write("Isi LinkedList <br>");
+		document.write("--------------- <br>");
+		for (i=0; i<4; i++)
+		{
+			document.write(List.ItemList(i) + "<br>") ;
+		}
+		document.write("--------------- <br>");
+		alert("Isi LinkedList Awal =" + List.ItemList(0));
+		alert("ItemList 1 pada Linked List diBuang, yaitu = " +List.ItemList(1));
+		List.Buang(1);
+		document.write("<br>Isi LinkedList Terakhir <br>");
+		document.write("--------------- <br>");
+		for (i=0; i<4; i++)
+		{
+			document.write(List.ItemList(i) + "<br>") ;
+		}
+		document.write("--------------- <br>");
+		//-->	
+	</script>
+	</body>
+</html>

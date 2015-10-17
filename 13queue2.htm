@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Struktur Data Queue</title>
+		<script language = "JavaScript">
+			var queue = new Array();
+			
+			function Masuk_Antrian(data) 
+			{
+				queue.unshift(data);
+				
+			}
+			
+			function Keluar_Antrian() 
+			{
+				var yang_keluar_antrian = queue.pop();
+				if (queue.length == 0)
+					return "Stack Sudah Kosong";
+				else
+					return yang_keluar_antrian;
+			}
+			
+			function Dalam_Antrian(list)
+			{
+				list.options.length = 0;
+				for (var i = 0; i < queue.length; i++)
+				{
+					var data = new Option(queue[i]);
+					list.options[list.options.length] = data;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<input type=text name=textSimpan>
+			<input type=button value="Masuk Antrian" onClick="Masuk_Antrian(textSimpan.value);textSimpan.value='';Dalam_Antrian(Visualisasi);">
+			<select name="Visualisasi" size=12>
+				<option>Isi Antrian....
+			</select>
+			<input type=text name=textAmbil size=20>
+			<input type=button value="Keluar Antrian" onClick="textAmbil.value = Keluar_Antrian();Dalam_Antrian(Visualisasi);">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+	<head>
+	<title>Program Queue dengan shift dan unshift javaScript</title>
+	<script language="JavaScript">
+	
+	function DataQueue()
+	{
+		var queue = []; 
+		queue.unshift(1); 
+		queue.unshift(2);
+		var i = queue.shift(); 
+		document.write(i + "<br/>"); 
+		queue.unshift(3); 
+		queue.unshift(4); 
+		var i = queue.shift(); 
+		document.write(i + "<br/>"); 
+	}
+	</script>
+	</head>
+	<body> 
+		<form name="FormStrukturData"> 
+			<input name="btnQueue" value="Queue" type="button"onClick="DataQueue();" />
+		</form>
+	</body>
+</html>

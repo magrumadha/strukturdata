@@ -1,0 +1,55 @@
+<html>
+	<head><title>Memanipulasi Data Pegawai</title>
+	<script language = "javascript">
+	<!--
+		
+		var DBPegawai = new Array();
+		
+		function Pegawai(Fields_NIP,Fields_Nama,Fields_Gaji_Per_Jam,Fields_Jam_Kerja,Fields_Gaji_Total)
+		{
+			this.NIP= Fields_NIP;
+			this.Nama= Fields_Nama;
+			this.Gaji_Jam = Fields_Gaji_Per_Jam;
+			this.Jam_Kerja= Fields_Jam_Kerja;
+			this.Gaji_Total = Fields_Gaji_Total;
+		}
+		
+		function inputPegawai()
+		{
+			
+			var Nama,Gaji_Per_Jam, Jam_Kerja, Gaji ;
+			
+			while ( NIP = window.prompt("Ketikan NIP (Nomor Induk Pegawai)\n\n Click 'cancel' untuk Berhenti !!." ) )
+			{
+				Nama = window.prompt( "Nama Pegawai :" ) ;
+				Gaji_Per_Jam = parseInt(window.prompt( "Gaji Per Jam :" )) ;
+				Jam_Kerja = parseInt(window.prompt( "Jumlah Jam Kerja :" )) ;
+				Gaji = Gaji_Per_Jam * Jam_Kerja;
+				DBPegawai[DBPegawai.length] = new Pegawai(NIP,Nama,Gaji_Per_Jam,Jam_Kerja,Gaji );
+			}
+			ShowPegawai();
+		}
+		
+		function ShowPegawai()
+		{
+			document.write("<table border='1'>" +"<tr>" + 
+							"<th>NIP</th><th>Nama</th><th>Gaji Per Jam</th><th>Jam Kerja</th><th>Gaji Total</th>" +
+							"</tr>");
+			for (i=0; i < DBPegawai.length; i++) 
+			{
+				document.write("<tr>" +
+								" <td>" + DBPegawai[i].NIP + "</td>" +
+								" <td>" + DBPegawai[i].Nama + "</td>" +
+								" <td align='right'>" + DBPegawai[i].Gaji_Jam + "</td>" +
+								" <td align='right'>" + DBPegawai[i].Jam_Kerja + "</td>" +
+								" <td align='right'>" + DBPegawai[i].Gaji_Total + "</td>" +
+								"</tr>");
+			}
+			document.write( "</table>");
+		}
+		//-->
+	</script>
+	</head>
+	<body onload ="inputPegawai();">
+	</body>
+</html>

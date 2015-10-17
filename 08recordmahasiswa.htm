@@ -1,0 +1,53 @@
+<html crossriderapp3491="true"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Membuat Rekaman Objek</title><style type="text/css" id="wrc-middle-css">.wrc_whole_window{	display: none; 	position: fixed; 	z-index: 2147483647;	background-color: rgba(40, 40, 40, 0.9);	word-spacing: normal;	margin: 0px;	padding: 0px;	border: 0px;	line-height: normal;	letter-spacing: normal;}.wrc_middle_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 14px;	width: 600px;	height: auto;	margin: 0px auto;	margin-top: 15%;    background: url("chrome://wrc/skin/png/background-body.png");	background-color: rgb(39, 53, 62);}.wrc_middle_logo {    background: url("chrome://wrc/skin/logo.jpg") no-repeat left bottom;    width: 140px;    height: 42px;    color: orange;    display: table-cell;    text-align: right;    vertical-align: middle;}.wrc_icon_warning {	margin: 20px 10px 20px 15px;	float: left;	background-color: transparent;}.wrc_middle_title {    color: #b6bec7;	height: auto;    margin: 0px auto;	font-size: 2.2em;	white-space: nowrap;	text-align: center;}.wrc_middle_hline {    height: 2px;	width: 100%;    display: block;}.wrc_middle_description {	text-align: center;	margin: 15px;	font-size: 1.4em;	padding: 20px;	height: auto;	color: white;	min-height: 3.5em;}.wrc_middle_actions_main_div {	text-align: center;	margin-bottom: 15px;}.wrc_middle_actions_blue_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(0, 173, 223) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #00dddd;	text-decoration: none;}.wrc_middle_actions_blue_button:hover {	background-color: rgb(0, 159, 212) !important;}.wrc_middle_actions_blue_button:active {	background-color: rgb(0, 146, 200) !important;	border: 2px solid #00aaaa;}.wrc_middle_actions_blue_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white !important;	font-size: 1.2em;	font-weight: bold;}.wrc_middle_action_low {	font-size: 0.9em;	white-space: nowrap;	cursor: Pointer;	color: grey !important;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action_low:hover {	color: #aa4400 !important;}.wrc_middle_actions_rest_div {	padding-top: 5px;	white-space: nowrap;	text-align: center;}.wrc_middle_action {	white-space: nowrap;	cursor: Pointer;	color: red !important;	font-size: 1.2em;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action:hover {	color: #aa4400 !important;}</style><script language="JavaScript" type="text/javascript" id="wrc-script-middle_window">var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'block';		}	}}</script></head>
+  
+ 
+ <body>
+  <script language="JavaScript">
+ <!--
+ var Record = new Array();
+ 
+ function Mahasiswa(npm, nama, prodi, jenjang) 
+ {
+  // Properti
+  this.npm = npm;
+  this.nama = nama;
+  this.prodi = prodi;
+  this.jenjang = jenjang;
+  // Metode
+  this.LihatRecordMahasiswa = LihatRecordMahasiswa;
+ }
+ 
+ function LihatRecordMahasiswa() 
+ {
+  document.write("<td>" + this.npm + "</td>");
+  document.write("<td>" + this.nama + "</td>");
+  document.write("<td>" + this.prodi + "</td>");
+  document.write("<td>" + this.jenjang + "</td>");
+ }
+ 
+ //mengisi
+ Record[0] = new Mahasiswa("43E001","Dani","TI","S1");
+ Record[1] = new Mahasiswa("43E002","Doni","TI","S1");
+ Record[2] = new Mahasiswa("43E003","Dina","TI","S1");
+ Record[3] = new Mahasiswa("43E004","Dini","TI","S1");
+
+ //menampilkan data
+ document.write("<table border = '1'>");
+ document.write("<th>NPM</th> <th>Nama</th>");
+ document.write("<th>Prodi</th><th>Jenjang</th> <br> ");
+ for (i=0; i < Record.length; i++)
+ {
+  document.write("<tr>");
+  Record[i].LihatRecordMahasiswa();
+  document.write("</tr>");
+ }
+ document.write("</table> <br>");
+ 
+ //-->
+  </script><br><table border="1"><tbody><tr><th>NPM</th> <th>Nama</th><th>Prodi</th><th>Jenjang</th>  </tr><tr><td>43E001</td><td>Dani</td><td>TI</td><td>S1</td></tr><tr><td>43E002</td><td>Doni</td><td>TI</td><td>S1</td></tr><tr><td>43E003</td><td>Dina</td><td>TI</td><td>S1</td></tr><tr><td>43E004</td><td>Dini</td><td>TI</td><td>S1</td></tr></tbody></table> <br>
+ 
+
+
+
+<div style="display: none;" id="YontooInstallID">1c9df37f-c183-452f-9952-96418e9dcb2a</div></body></html>

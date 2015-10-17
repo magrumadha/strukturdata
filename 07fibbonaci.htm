@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+<!--
+	function fibonacci(n)
+	{
+		var i;
+		
+		var array_fib = new Array();
+	
+		array_fib.push(0);
+		array_fib.push(1);
+
+		for(i=0; i<n; i++)
+		{
+	
+			array_fib.push(array_fib[0] + array_fib[1]);
+			array_fib.shift();
+		}
+		return array_fib[0];
+	}
+
+	var fib = prompt("Ketik Fibbonaci yang anda cari : ");
+	
+	for(var j=0; j<fib; j++)
+	{
+		document.write("Fibbonaci["+ j + "] = " + fibonacci(j));
+		document.write("<BR>");
+	}
+	document.write("<BR><HR>");
+//-->
+</script>
+</head>
+<body>
+</body>
+</html>

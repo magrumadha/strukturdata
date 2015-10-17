@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>Dijkstra Algorithms </title>
+		<script language="Javascript">
+		<!--
+			
+		//-->
+			var NilaiAcuan= 10000;
+			var TakTerdefinisi= -1;
+			var NamaVerteks = new Array('A','B','C','D','E','F');
+			var Matriks= new Array(6);
+			var x = NilaiAcuan;
+			var header = new Array("A-0","B-1","C-2","D-3","E-4","F-5");
+			Matriks[0]=new Array(0,2,3,x,x,x);
+			Matriks[1]=new Array(2,0,3,6,x,x);
+			Matriks[2]=new Array(3,3,0,3,5,x);
+			Matriks[3]=new Array(x,6,3,0,1,3);
+			Matriks[4]=new Array(x,x,5,1,0,1);
+			Matriks[5]=new Array(x,x,x,3,1,0);
+			
+			
+			
+			function Bobot(a,b)
+			{			
+				return Matriks[a][b];
+			}
+			
+			function Dijkstra(JumlahVerteks,Awal,d)
+			{
+				
+				var Posisi= new Array(JumlahVerteks);
+				var i;
+				var Kunjungan = new Array(JumlahVerteks);
+				var Sebelum= new Array(JumlahVerteks);
+				for(i=0; i<JumlahVerteks; i++)
+				{
+					Posisi[i]= NilaiAcuan;
+					Sebelum[i]= TakTerdefinisi;
+					Kunjungan[i]= false;
+				}
+				Posisi[Awal]=0;
+				var Verteks;
+				
+				for (Verteks =0; Verteks < JumlahVerteks; Verteks++)
+				{
+					var JarakTerpendek = NilaiAcuan;
+					Berhenti = -1;
+					for (i=0; i < JumlahVerteks; i++)
+					{
+						if (!Kunjungan[i])
+						{
+							if (Posisi[i] <= JarakTerpendek)
+							{
+								JarakTerpendek = Posisi[i];
+								Berhenti = i;
+							}
+						}
+					}
+					Kunjungan[Berhenti] = true;
+					for (i=0; i < JumlahVerteks; i++)
+					{
+						if (!Kunjungan[i])
+						{
+							var w = Bobot(Berhenti, i);
+							if (Posisi[Berhenti]+w < Posisi[i])
+							{
+								Posisi[i] = Posisi[Berhenti] + w;
+								Sebelum[i] = Berhenti;
+							}
+						}
+					}
+					document.write("Iterasi ke " + (Verteks) + "<br>");
+					showarray(header);
+					showarray(Posisi);
+					showarray(Sebelum);
+					showarray(Kunjungan);
+					document.write("<br>");
+					
+				}	
+				i=d;	
+				if (Posisi[i] < NilaiAcuan)
+				{
+					var Lintasan = NamaVerteks[i];
+					var Verteks = i;
+					while (Verteks>=0)
+					{	
+						Verteks = Sebelum[Verteks];
+						if (Verteks>=0) 
+							Lintasan = NamaVerteks[Verteks] + '->' + Lintasan;
+					}
+					alert("Jarak :" + Posisi[i]+' ('+Lintasan+')');
+				}else
+				{
+					alert("Tidak ada Jalur")
+				}
+				
+				
+			}
+			
+			function init()
+			{
+				
+				var Awal='<pre>';
+				Awal = Awal + 'A--2--B--6--D--3--F'+'<br>';
+				Awal = Awal + ' \\    |    /|    / '+'<br>';
+				Awal = Awal + '  3   3  3  1   1 '+'<br>';
+				Awal = Awal + '   \\  | /   |  / '+'<br>';
+				Awal = Awal + '    \\ |/    | / '+'<br>';
+				Awal = Awal + '      C--5--E '+'<br>';
+				Awal = Awal +'</pre>';
+				document.write(Awal.replace(/(\d)+/g, '<font color="red">$1</font>'));
+			}
+		
+			function showarray(x)
+			{
+				var n = x.length;
+				document.write("<table border=1 align=center>");
+				for (var i=0; i<n; i++)
+				{
+					document.write("<th style='width: 60px;'>" + x[i] +"</th>");
+				}
+				document.write("</table>");
+				
+			}		
+			
+			init();
+			
+			var Dari=1; // A
+			var Ke =4; // F
+		
+			Dijkstra(Matriks.length,Dari,Ke);
+		</script>
+		
+	</head>
+	<body>
+		
+	</body>
+</htmL>

@@ -1,0 +1,112 @@
+<HTML>
+<HEAD>
+<TITLE>MENCARI NILAI PERSAMAAN KUADRAT by magrumadha</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE = "Javascript">
+<!--
+function determinan(a,b,c)
+{
+	hasil = (b*b) - (4 * a * c);
+	return(hasil)
+
+}
+
+function akarpersamaan(a,b,c,d)
+{
+	dt = determinan(a,b,c)
+	if (d == "x1")
+	{
+		var hasil = (-b + Math.sqrt(dt)) / (2 * a);
+	} else
+	{
+		var hasil = (-b - Math.sqrt(dt)) / (2 * a);
+	}
+	return(hasil);
+}
+
+function format(a)
+{
+	if (a < 0)
+	{
+		var hasil = a;
+	} else
+	{
+		var hasil = "+ " + a;
+	}
+	return(hasil)
+}
+
+var sub1 = "1".sub();
+var sub2 = "2".sub();
+var sup2 = "2".sup();
+var akar = 	"&#8730";
+	
+	
+alert("Program untuk Menghitung Akar Kuadrat y = a(x*x) + bx + c");
+var a = parseInt(prompt("Masukan nilai a =  \n (Integer Only)"));
+var b = parseInt(prompt("Masukan nilai b =  \n (Integer Only)"));
+var c = parseInt(prompt("Masukan nilai c =  \n (Integer Only)"));
+
+// cek input, jika bukan integer diberi pesan error
+if (isNaN(a))
+{
+	alert("Nilai a yang anda masukkan tidak valid (must integer)");
+	document.write("Nilai a tidak valid , silahkan press F5 untuk mengulang");
+	
+} else if (isNaN(b))
+{
+	alert("Nilai b yang anda masukkan tidak valid (must integer)");
+	document.write("Nilai b tidak valid , silahkan press F5 untuk mengulang");
+	
+} else if (isNaN(c))
+{
+	alert("Nilai c yang anda masukkan tidak valid (must integer)");
+	document.write("Nilai c tidak valid , silahkan press F5 untuk mengulang");
+	
+} else 
+{
+	// cek determinan
+	dt = determinan(a,b,c);
+	
+	if (dt==0)
+	{
+		var x1 = akarpersamaan(a,b,c,"x1");
+		var x2 = akarpersamaan(a,b,c,"x2");
+		var ket = "Determinan 0 , akar kembar ";
+	}
+	else if (dt > 0)
+	{
+		var x1 = akarpersamaan(a,b,c,"x1");
+		var x2 = akarpersamaan(a,b,c,"x2");
+		var ket = "Determinan > 0 , akar berbeda ";
+	}
+	else 
+	{
+		var x1 = (-b) + " + " + akar + dt + " / " + 2*a;
+		var x2 = (-b) + " - " + akar + dt + " / " + 2*a;
+		var ket = "Determinan < 0 , akar imaginer ";
+	}
+	
+	document.write(".::::::: Mencari Akar Persamaan Kuadrat y = ax" + sup2 + " + bx + c  ::::::::.");
+	document.write("<hr align='left' width='40%'><br><br>");
+	document.write("Nilai a = " + a + "<br>");
+	document.write("Nilai b = " + b + "<br>");
+	document.write("Nilai c = " + c + "<br>");
+	document.write("y = " + a + "x" + sup2 +  format(b) + "x " + format(c));
+	document.write("<hr align='left' width='40%'><br>");
+	document.write("Rumus <br> " + " x" + sub1 + ",x" + sub2 + " = -b &#177 "  + akar + " b" + sup2 + " - 4ac / 2a");
+	document.write("<hr align='left' width='40%'><br>");
+	document.write("Nilai x" + sub1 + "  = " + x1  + "<br>");
+	document.write("Nilai x" + sub2 + "   = " + x2  + "<br>");
+	document.write("Determinan = " + dt  + "<br>");
+	document.write("Keterangan = " + ket + "<br>");
+	document.write("<hr align='left' width='40%'><br>");
+	
+}
+
+//-->
+
+</SCRIPT>
+</BODY>
+</HTML>

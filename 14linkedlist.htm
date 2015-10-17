@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<title>Struktur Data Linked List</title> 
+	</head>
+	<body>
+		<script language = "JavaScript">
+		<!--
+		
+		function LinkedList()
+		{
+			this._panjang = 0;
+			this._kepala = null;
+		}
+		alert('');
+		
+		LinkedList.prototype = 
+		{
+			constructor: LinkedList,
+		
+			//Membuat Metode Untuk Menambah Data kedalam List
+			Tambah: function(data)
+			{
+				//Membuat Node List
+				var node = { data: data, next: null };
+				var NodeTanda;
+				//Periksa Isi List
+				if (this._kepala == null)
+				{
+					this._kepala = node;
+				} else
+				{
+					NodeTanda = this._kepala;
+					while (NodeTanda.next)
+					{
+						NodeTanda = NodeTanda.next;
+					}
+					NodeTanda.next = node;
+				}
+				this._panjang++;
+			},
+		
+			//Membuat Metode Untuk Menunjuk Item Data
+			Item: function(index)
+			{
+				if ((index > -1) && (index < this._panjang))
+				{
+					var NodeTanda = this._kepala;
+					var i = 0;
+					while (i++ < index)
+					{
+						NodeTanda = NodeTanda.next;
+					}
+					return NodeTanda.data;
+				} else
+				{
+					return null;
+				}
+			},
+		
+			//Membuat Metode Untuk Membuang Elemen List
+			Buang: function(index)
+			{
+				if ((index > -1) && (index < this._panjang))
+				{
+					var NodeTanda = this._kepala;
+					var previous;
+					var i = 0;
+					if (index == 0)
+					{
+						this._kepala = NodeTanda.next;
+					} else
+					{
+						while(i++ < index)
+						{
+							previous = NodeTanda;
+							NodeTanda = NodeTanda.next;
+						}
+					previous.next = NodeTanda.next;
+					}
+					this._panjang--;
+					return NodeTanda.data;
+				} else
+				{
+					return null;
+				}
+			},	
+		
+			//Membuat Metode Untuk Mengetahui Jumlah Elemen List
+			Ukuran: function()
+			{
+				return this._panjang;
+			},
+		
+			//Membuat Metode Untuk Membentuk Array
+			toArray: function()
+			{
+				var result = [];
+				var NodeTanda = this._kepala;
+				while(NodeTanda)
+				{
+					result.push(NodeTanda.data);
+					NodeTanda = NodeTanda.next;
+				}
+				return result;
+			},
+		
+			//Membuat Metode Untuk Konversi ke String
+			toString: function()
+			{
+				return this.toArray().toString();
+			}
+		}
+
+		
+		
+		var list = new LinkedList();
+		
+		list.Tambah("Teknik Informatika");
+		list.Tambah("Teknik Komputer");
+		list.Tambah("Komputerisasi Akuntansi");
+		list.Tambah("Computer Networking");
+		document.write("Isi LinkedList <br>");
+		document.write("--------------- <br>");
+		var i;
+		
+		for (i=0; i<4; i++)
+		{
+			document.write(list.Item(i) + "<br>") ;
+		}
+		
+		document.write("--------------- <br>");
+		alert("Isi LinkedList Awal =" + list.Item(0));
+		alert("Item 1 pada Linked list dibuang, yaitu = " +list.Item(1));
+		list.Buang(1);
+		document.write("Isi LinkedList Terakhir <br>");
+		document.write("--------------- <br>");
+		for (i=0; i<4; i++)
+		{
+			document.write(list.Item(i) + "<br>") ;
+		}
+		document.write("--------------- <br>");
+		//-->
+	</script>
+	</body>
+</html>
